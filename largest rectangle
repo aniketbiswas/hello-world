@@ -1,0 +1,12 @@
+int largestRectangleArea(vector<int>& height) {
+    height.push_back(0); 
+    int len = height.size(),res = 0, cur=1;
+    int s[len+1]={0};
+    s[0]=-1;
+    for(int i=1;i<len;i++){
+        while(cur && height[i]<height[s[cur]])
+            res = max(res, height[s[cur]] * (i-s[--cur]-1));
+        s[++cur]=i;
+    }
+    return res;
+  }
